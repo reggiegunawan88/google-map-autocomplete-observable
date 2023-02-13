@@ -1,5 +1,8 @@
 const initialState = {
-  keyword: ''
+  keyword: '',
+  type: ['establishment'],
+  biasViewport: true,
+  strictBounds: false
 };
 
 const formReducer = (state = initialState, action) => {
@@ -15,6 +18,11 @@ const formReducer = (state = initialState, action) => {
         keyword: 'keyword epic triggered'
       };
     }
+    // case 'SET_MAP_TYPE': {
+    //   return {
+
+    //   }
+    // }
     default:
       return state;
   }

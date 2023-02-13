@@ -15,8 +15,4 @@ function Index() {
   );
 }
 
-root.render(
-  <React.StrictMode>
-    <Index />
-  </React.StrictMode>
-);
+root.render(<Index />);

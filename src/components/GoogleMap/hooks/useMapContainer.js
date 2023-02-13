@@ -1,33 +1,41 @@
-import { useCallback, useState } from 'react';
-import { useJsApiLoader } from '@react-google-maps/api';
+import { createRef, useEffect } from 'react';
+import useShallowEqualSelector from 'helpers/useShallowEqualSelector';
+import { useDispatch } from 'react-redux';
+import validateLoadedScript from 'helpers/validateLoadedScript';
 
 const useMapContainer = () => {
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: 'AIzaSyDZfVO29Iytspv4xz7S68doIoiztiRLhbk'
-  });
-  const [map, setMap] = useState(null);
-  const center = {
-    lat: 40.749933,
-    lng: -73.98633
+  const { isMapReady, center, apiKey } = useShallowEqualSelector(state => state.googleMap);
+  const mapRef = createRef(null);
+  const dispatch = useDispatch();
+
+  window.initMap = () => {
+    // eslint-disable-next-line no-undef
+    new google.maps.Map(mapRef.current, {
+      center: center,
+      zoom: 15,
+      mapTypeControl: false
+    });
   };
 
-  const onLoad = useCallback(() => {
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
+  const loadMapScript = () => {
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap&libraries=places`;
+    script.async = true;
+    script.defer = true;
+    dispatch({ type: 'SET_MAP_READY' });
 
-    setMap(map);
-  }, []);
+    if (!validateLoadedScript({ url: script.src })) {
+      document.body.appendChild(script);
+    }
+  };
 
-  const onUnmount = useCallback(() => {
-    setMap(null);
+  useEffect(() => {
+    loadMapScript();
   }, []);
 
   return {
-    isLoaded,
-    center,
-    onLoad,
-    onUnmount
+    mapRef,
+    isMapReady
   };
 };
 

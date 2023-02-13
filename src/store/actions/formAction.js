@@ -1,4 +1,4 @@
-export const ping = () => ({ type: 'PING' });
+/* autocomplete form action */
 
 export const setKeyword = value => {
   return {

@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
-import formReducer from './form';
-import pingReducer from './pingpong';
+import formReducer from './formReducer';
+import googleMapReducers from './googleMapReducer';
 
 // define reducer list
 const rootReducers = combineReducers({
-  ping: pingReducer,
-  form: formReducer
+  form: formReducer,
+  googleMap: googleMapReducers
 });
 
 export default rootReducers;

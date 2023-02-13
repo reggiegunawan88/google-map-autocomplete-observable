@@ -9,7 +9,7 @@ import FormGroup from '@mui/material/FormGroup';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useDispatch } from 'react-redux';
-import { setKeyword } from 'store/actions';
+import { setKeyword } from 'store/actions/formAction';
 
 const AutoselectForm = () => {
   const dispatch = useDispatch();
