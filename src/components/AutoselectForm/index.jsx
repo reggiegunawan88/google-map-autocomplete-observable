@@ -14,8 +14,6 @@ const AutoselectForm = () => {
     <Box
       sx={{
         display: 'flex',
-        // position: 'sticky',
-        // top: 0,
         flexDirection: 'column',
         boxShadow: '1',
         borderRadius: 2,
