@@ -8,8 +8,12 @@ import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { useDispatch } from 'react-redux';
+import { setKeyword } from 'store/actions';
 
 const AutoselectForm = () => {
+  const dispatch = useDispatch();
+
   return (
     <Box
       sx={{
@@ -50,7 +54,7 @@ const AutoselectForm = () => {
         </Box>
 
         {/* searchbar input */}
-        <TextField placeholder="Enter a location" size="small" />
+        <TextField placeholder="Enter a location" size="small" onChange={e => dispatch(setKeyword(e.target.value))} />
       </FormGroup>
     </Box>
   );
