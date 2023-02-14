@@ -1,6 +1,7 @@
-import { Box } from '@mui/material';
-import withInitMap from 'components/HOC/GoogleMap/withInitMap';
 import React from 'react';
+import { Box } from '@mui/material';
+
+import withInitMap from 'components/HOC/GoogleMap/withInitMap';
 
 const MapContainer = ({ mapRef, isMapReady }) => {
   if (!isMapReady) {

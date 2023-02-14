@@ -1,9 +1,11 @@
 import React from 'react';
-import Box from '@mui/material/Box';
-import AutoselectForm from 'components/AutoselectForm';
-import MapContainer from 'components/GoogleMap/MapContainer';
 import Div100vh from 'react-div-100vh';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+
+import MapContainer from 'components/GoogleMap/MapContainer';
+import AutoselectForm from 'components/AutoselectForm';
+
 import useShallowEqualSelector from 'helpers/useShallowEqualSelector';
 
 const Home = () => {

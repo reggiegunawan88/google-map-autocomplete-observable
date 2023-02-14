@@ -1,3 +1,4 @@
+/* google map instance reducer */
 const initialState = {
   isMapReady: false,
   apiKey: 'AIzaSyDlAgBiPpmD67UsYw8RrZwfehn1mWdpXO0',

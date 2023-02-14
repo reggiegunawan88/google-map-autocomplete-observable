@@ -1,3 +1,4 @@
+/* autocomplete form reducer */
 const initialState = {
   keyword: '',
   place: {

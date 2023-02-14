@@ -25,9 +25,9 @@ const getMapLocation = async ({ place, store }) => {
   return place;
 };
 
+// set type option to autocomplete instance
 const assignAutocompleteOption = ({ type, store }) => {
   const { autocomplete } = store.value.googleMap;
-  // set type to autocomplete instance
   autocomplete.setTypes(type);
   return type;
 };

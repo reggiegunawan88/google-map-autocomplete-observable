@@ -1,10 +1,10 @@
 /* eslint-disable no-undef */
-import React, { useRef } from 'react';
-import { useEffect } from 'react';
-import useShallowEqualSelector from 'helpers/useShallowEqualSelector';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import validateLoadedScript from 'helpers/validateLoadedScript';
 import { storeMapProperties } from 'store/actions/googleMapAction';
+
+import useShallowEqualSelector from 'helpers/useShallowEqualSelector';
+import validateLoadedScript from 'helpers/validateLoadedScript';
 
 const withInitMap = Component => () => {
   const dispatch = useDispatch();
