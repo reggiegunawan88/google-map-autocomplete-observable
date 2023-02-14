@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Google Map Autocomplete
+# Google Map Autocomplete
 
 Google Map with autocomplete searchbox and custom form options.
 
