@@ -2,7 +2,8 @@ import { combineEpics } from 'redux-observable';
 import { ofType } from 'redux-observable';
 import { mergeMap } from 'rxjs/operators';
 
-async function getMapLocation({ place, store }) {
+// get and set map location based on selected place
+const getMapLocation = async ({ place, store }) => {
   const { map, marker } = store.value.googleMap.mapProps;
 
   if (!place.geometry || !place.geometry.location) {
@@ -22,7 +23,7 @@ async function getMapLocation({ place, store }) {
   marker.setVisible(true);
 
   return place;
-}
+};
 
 // epic listener for selecting autocomplete place
 const selectAutoCompletePlace = (action$, store) =>

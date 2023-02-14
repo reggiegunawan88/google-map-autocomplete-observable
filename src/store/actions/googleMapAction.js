@@ -6,6 +6,7 @@ export const setMapProperties = value => {
     payload: value
   };
 };
+
 export const setMapReady = () => {
   return {
     type: 'SET_MAP_READY'

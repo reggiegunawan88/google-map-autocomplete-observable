@@ -7,12 +7,12 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-function Index() {
+const Index = () => {
   return (
     <Provider store={store}>
       <App />
     </Provider>
   );
-}
+};
 
 root.render(<Index />);

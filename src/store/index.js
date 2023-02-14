@@ -1,14 +1,12 @@
 import { createStore, applyMiddleware } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 
+// define root reducer and epic
 import rootEpic from './epics';
 import rootReducers from 'store/reducers';
 
-// create epic observable middleware
+// define observable epics middleware
 const epicMiddleware = createEpicMiddleware();
-
-// define epic root
-// export const rootEpic = combineEpics(setKeywordEpic);
 
 const store = createStore(rootReducers, applyMiddleware(epicMiddleware));
 epicMiddleware.run(rootEpic);

@@ -22,7 +22,6 @@ const formReducer = (state = initialState, action) => {
       };
     }
     case 'SET_PLACE': {
-      console.log('reducer', action.payload);
       return {
         ...state,
         place: {
