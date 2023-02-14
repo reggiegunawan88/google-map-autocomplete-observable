@@ -7,10 +7,9 @@ import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import useAutoselectForm from './hooks/useAutoselectForm';
+import withAutocomplete from 'components/HOC/GoogleMap/withAutocomplete';
 
-const AutoselectForm = () => {
-  const { textboxRef, selectOptions } = useAutoselectForm();
+const AutoselectForm = ({ textboxRef, selectOptions }) => {
   return (
     <Box
       sx={{
@@ -31,7 +30,7 @@ const AutoselectForm = () => {
         </Typography>
       </Box>
       <FormGroup sx={{ p: 1 }}>
-        {/* radio button input */}
+        {/* radio button section */}
         <FormControl>
           <RadioGroup defaultValue="all" onChange={selectOptions} row>
             <FormControlLabel value="all" control={<Radio />} label="All" />
@@ -43,16 +42,16 @@ const AutoselectForm = () => {
           </RadioGroup>
         </FormControl>
 
-        {/* checkbox input */}
+        {/* checkbox section */}
         <Box sx={{ display: 'flex', flexDirection: 'row' }}>
           <FormControlLabel control={<Checkbox defaultChecked disabled />} label="Bias to map viewport" />
         </Box>
 
-        {/* searchbar input */}
+        {/* autocomplete searchbar section */}
         <TextField placeholder="Enter a location" size="small" inputRef={textboxRef} />
       </FormGroup>
     </Box>
   );
 };
 
-export default AutoselectForm;
+export default withAutocomplete(AutoselectForm);

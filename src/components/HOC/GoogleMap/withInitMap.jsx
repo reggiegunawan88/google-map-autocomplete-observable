@@ -1,14 +1,15 @@
 /* eslint-disable no-undef */
-import { createRef, useEffect } from 'react';
+import React, { useRef } from 'react';
+import { useEffect } from 'react';
 import useShallowEqualSelector from 'helpers/useShallowEqualSelector';
 import { useDispatch } from 'react-redux';
 import validateLoadedScript from 'helpers/validateLoadedScript';
 import { setMapProperties } from 'store/actions/googleMapAction';
 
-const useMapContainer = () => {
+const withInitMap = Component => () => {
   const dispatch = useDispatch();
   const { isMapReady, center, apiKey } = useShallowEqualSelector(state => state.googleMap);
-  const mapRef = createRef(null);
+  const mapRef = useRef(null);
 
   window.initMap = () => {
     var mapInstance = new google.maps.Map(mapRef.current, {
@@ -41,10 +42,7 @@ const useMapContainer = () => {
     loadMapScript();
   }, []);
 
-  return {
-    mapRef,
-    isMapReady
-  };
+  return <Component isMapReady={isMapReady} mapRef={mapRef} />;
 };
 
-export default useMapContainer;
+export default withInitMap;

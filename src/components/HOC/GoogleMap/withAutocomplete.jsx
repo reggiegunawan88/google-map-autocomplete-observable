@@ -1,10 +1,11 @@
 /* eslint-disable no-undef */
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import useShallowEqualSelector from 'helpers/useShallowEqualSelector';
 import { selectMapPlace, setMapOption } from 'store/actions/formAction';
 import { useEffect, useRef } from 'react';
 
-const useAutoselectForm = () => {
+const withAutocomplete = Component => () => {
   const dispatch = useDispatch();
   const textboxRef = useRef();
   const { mapProps } = useShallowEqualSelector(state => state.googleMap);
@@ -35,10 +36,7 @@ const useAutoselectForm = () => {
     }
   }, [window.google?.maps]);
 
-  return {
-    textboxRef,
-    selectOptions
-  };
+  return <Component textboxRef={textboxRef} selectOptions={selectOptions} />;
 };
 
-export default useAutoselectForm;
+export default withAutocomplete;
