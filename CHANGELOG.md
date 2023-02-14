@@ -1,3 +1,11 @@
+## 2.0.1 (2023-02-14)
+
+### Fix
+
+- **package.json**: remove useless dependencies
+
+## 2.0.0 (2023-02-14)
+
 ## 0.1.0 (2023-02-14)
 
 ### Feat
