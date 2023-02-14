@@ -1,28 +1,36 @@
 const initialState = {
-  keyword: '',
-  type: ['establishment'],
-  biasViewport: true,
-  strictBounds: false
+  place: {
+    name: '',
+    address: ''
+  },
+  options: {
+    fields: ['formatted_address', 'geometry', 'name'],
+    type: [],
+    strictBounds: false
+  }
 };
 
 const formReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'SET_KEYWORD':
+    case 'SET_MAP_TYPE': {
       return {
         ...state,
-        keyword: action.payload
-      };
-    case 'EMPTY_KEYWORD': {
-      return {
-        ...state,
-        keyword: 'keyword epic triggered'
+        options: {
+          ...state.options,
+          type: [action.payload]
+        }
       };
     }
-    // case 'SET_MAP_TYPE': {
-    //   return {
-
-    //   }
-    // }
+    case 'SET_PLACE': {
+      console.log('reducer', action.payload);
+      return {
+        ...state,
+        place: {
+          name: action.payload.name || '',
+          address: action.payload.formatted_address || ''
+        }
+      };
+    }
     default:
       return state;
   }

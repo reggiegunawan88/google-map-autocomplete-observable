@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import React from 'react';
 import useMapContainer from './hooks/useMapContainer';
 
@@ -7,7 +8,7 @@ const MapContainer = () => {
   if (!isMapReady) {
     return <></>;
   }
-  return <div ref={mapRef} style={{ width: '100%', height: '400px' }}></div>;
+  return <Box ref={mapRef} sx={{ width: '100%', height: '400px' }}></Box>;
 };
 
 export default MapContainer;

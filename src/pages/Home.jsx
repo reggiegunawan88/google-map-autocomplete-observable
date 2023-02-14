@@ -7,15 +7,24 @@ import Typography from '@mui/material/Typography';
 import useShallowEqualSelector from 'helpers/useShallowEqualSelector';
 
 const Home = () => {
-  const keyword = useShallowEqualSelector(state => state.form.keyword);
+  const { place } = useShallowEqualSelector(state => state.form);
 
   return (
     <Div100vh style={{ position: 'relative' }}>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-        <Typography variant="h3">React - Google Maps by Reggie Gunawan</Typography>
-        <Typography variant="h5">Searchbar value: {keyword}</Typography>
-        <Box sx={{ position: 'relative', height: '100%', width: '100%' }}>
-          <AutoselectForm />
+        <Typography variant="h4">React - Google Maps by Reggie Gunawan</Typography>
+        <Box
+          sx={{ position: 'relative', height: '100%', width: '100%', display: 'flex', flexDirection: 'column', gap: 1 }}
+        >
+          <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
+            <Box sx={{ flex: 1 }}>
+              <AutoselectForm />
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, gap: 2 }}>
+              <Typography variant="h5">Place name: {place.name || '-'}</Typography>
+              <Typography variant="h5">Place address: {place.address || '-'}</Typography>
+            </Box>
+          </Box>
           <MapContainer />
         </Box>
       </Box>

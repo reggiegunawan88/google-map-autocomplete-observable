@@ -1,6 +1,10 @@
 const initialState = {
   isMapReady: false,
-  apiKey: 'AIzaSyDZfVO29Iytspv4xz7S68doIoiztiRLhbk',
+  apiKey: 'AIzaSyDlAgBiPpmD67UsYw8RrZwfehn1mWdpXO0',
+  mapProps: {
+    map: null,
+    marker: null
+  },
   center: {
     lat: 40.749933,
     lng: -73.98633
@@ -14,14 +18,15 @@ const googleMapReducers = (state = initialState, action) => {
         ...state,
         isMapReady: true
       };
-    case 'UPDATE_MAP_LOCATION':
+    case 'SET_MAP_PROPERTIES': {
       return {
         ...state,
-        center: {
-          lat: action.payload.lat,
-          lng: action.payload.lng
+        mapProps: {
+          map: action.payload.map,
+          marker: action.payload.marker
         }
       };
+    }
     default:
       return state;
   }

@@ -1,4 +1,3 @@
-import React from 'react';
 import Box from '@mui/material/Box';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -8,20 +7,17 @@ import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { useDispatch } from 'react-redux';
-import { setKeyword } from 'store/actions/formAction';
+import useAutoselectForm from './hooks/useAutoselectForm';
 
 const AutoselectForm = () => {
-  const dispatch = useDispatch();
-
+  const { textboxRef, selectOptions } = useAutoselectForm();
   return (
     <Box
       sx={{
         display: 'flex',
         flexDirection: 'column',
         boxShadow: '1',
-        borderRadius: 2,
-        width: '50%'
+        borderRadius: 2
       }}
     >
       <Box
@@ -37,7 +33,7 @@ const AutoselectForm = () => {
       <FormGroup sx={{ p: 1 }}>
         {/* radio button input */}
         <FormControl>
-          <RadioGroup row>
+          <RadioGroup defaultValue="all" onChange={selectOptions} row>
             <FormControlLabel value="all" control={<Radio />} label="All" />
             <FormControlLabel value="establishment" control={<Radio />} label="Establishment" />
             <FormControlLabel value="address" control={<Radio />} label="Address" />
@@ -49,12 +45,11 @@ const AutoselectForm = () => {
 
         {/* checkbox input */}
         <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-          <FormControlLabel control={<Checkbox defaultChecked />} label="Bias to map viewport" />
-          <FormControlLabel control={<Checkbox />} label="Strict bounds" />
+          <FormControlLabel control={<Checkbox defaultChecked disabled />} label="Bias to map viewport" />
         </Box>
 
         {/* searchbar input */}
-        <TextField placeholder="Enter a location" size="small" onChange={e => dispatch(setKeyword(e.target.value))} />
+        <TextField placeholder="Enter a location" size="small" inputRef={textboxRef} />
       </FormGroup>
     </Box>
   );
