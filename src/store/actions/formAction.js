@@ -1,12 +1,5 @@
 /* autocomplete form action */
 
-export const selectMapPlace = value => {
-  return {
-    type: 'SET_PLACE',
-    payload: value
-  };
-};
-
 export const setAutocompleteOption = value => {
   return {
     type: 'SET_AUTOCOMPLETE_OPTION',

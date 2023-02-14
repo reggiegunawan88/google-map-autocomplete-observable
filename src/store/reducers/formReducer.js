@@ -29,15 +29,6 @@ const formReducer = (state = initialState, action) => {
         }
       };
     }
-    case 'SET_PLACE': {
-      return {
-        ...state,
-        place: {
-          name: action.payload.name || '',
-          address: action.payload.formatted_address || ''
-        }
-      };
-    }
     default:
       return state;
   }

@@ -15,7 +15,14 @@ export const storeMapProperties = value => {
 
 export const storeAutocompleteInstance = value => {
   return {
-    type: 'STORE_AUTOCOMPLETE',
+    type: 'STORE_MAP_AUTOCOMPLETE',
+    payload: value
+  };
+};
+
+export const selectMapPlace = value => {
+  return {
+    type: 'SET_MAP_PLACE',
     payload: value
   };
 };

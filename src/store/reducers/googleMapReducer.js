@@ -10,7 +10,11 @@ const initialState = {
     map: null,
     marker: null
   },
-  autocomplete: null
+  autocomplete: null,
+  place: {
+    name: '',
+    address: ''
+  }
 };
 
 const googleMapReducers = (state = initialState, action) => {
@@ -29,10 +33,19 @@ const googleMapReducers = (state = initialState, action) => {
         }
       };
     }
-    case 'STORE_AUTOCOMPLETE': {
+    case 'STORE_MAP_AUTOCOMPLETE': {
       return {
         ...state,
         autocomplete: action.payload
+      };
+    }
+    case 'SET_MAP_PLACE': {
+      return {
+        ...state,
+        place: {
+          name: action.payload.name || '',
+          address: action.payload.formatted_address || ''
+        }
       };
     }
     default:

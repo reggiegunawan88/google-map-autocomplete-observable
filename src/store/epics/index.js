@@ -35,7 +35,7 @@ const assignAutocompleteOption = ({ type, store }) => {
 // epic listener for selecting autocomplete place
 const selectAutoCompletePlace = (action$, store) =>
   action$.pipe(
-    ofType('SET_PLACE'),
+    ofType('SET_MAP_PLACE'),
     mergeMap(action => getMapLocation({ place: action.payload, store }))
   );
 

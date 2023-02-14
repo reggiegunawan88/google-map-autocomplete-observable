@@ -9,7 +9,7 @@ import AutoselectForm from 'components/AutoselectForm';
 import useShallowEqualSelector from 'helpers/useShallowEqualSelector';
 
 const Home = () => {
-  const { place } = useShallowEqualSelector(state => state.form);
+  const { place } = useShallowEqualSelector(state => state.googleMap);
 
   return (
     <Div100vh style={{ position: 'relative' }}>

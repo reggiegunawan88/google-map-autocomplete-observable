@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import useShallowEqualSelector from 'helpers/useShallowEqualSelector';
-import { selectMapPlace } from 'store/actions/formAction';
+import { selectMapPlace } from 'store/actions/googleMapAction';
 import { storeAutocompleteInstance } from 'store/actions/googleMapAction';
 
 const withAutocomplete = Component => () => {
