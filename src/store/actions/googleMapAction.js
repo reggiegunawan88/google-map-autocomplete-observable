@@ -1,14 +1,21 @@
 /* google map instance action */
 
-export const setMapProperties = value => {
+export const setMapReady = () => {
   return {
-    type: 'SET_MAP_PROPERTIES',
+    type: 'SET_MAP_READY'
+  };
+};
+
+export const storeMapProperties = value => {
+  return {
+    type: 'STORE_MAP_PROPERTIES',
     payload: value
   };
 };
 
-export const setMapReady = () => {
+export const storeAutocompleteInstance = value => {
   return {
-    type: 'SET_MAP_READY'
+    type: 'STORE_AUTOCOMPLETE',
+    payload: value
   };
 };

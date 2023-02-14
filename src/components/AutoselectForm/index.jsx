@@ -8,8 +8,13 @@ import FormGroup from '@mui/material/FormGroup';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import withAutocomplete from 'components/HOC/GoogleMap/withAutocomplete';
+import useShallowEqualSelector from 'helpers/useShallowEqualSelector';
+import useAutoselectForm from './hooks/useAutoselectForm';
 
-const AutoselectForm = ({ textboxRef, selectOptions }) => {
+const AutoselectForm = ({ textboxRef }) => {
+  const { keyword } = useShallowEqualSelector(state => state.form);
+  const { handleKeywordInput, selectOptions } = useAutoselectForm();
+
   return (
     <Box
       sx={{
@@ -32,13 +37,13 @@ const AutoselectForm = ({ textboxRef, selectOptions }) => {
       <FormGroup sx={{ p: 1 }}>
         {/* radio button section */}
         <FormControl>
-          <RadioGroup defaultValue="all" onChange={selectOptions} row>
-            <FormControlLabel value="all" control={<Radio />} label="All" />
+          <RadioGroup defaultValue="" onChange={selectOptions} row>
+            <FormControlLabel value="" control={<Radio />} label="All" />
             <FormControlLabel value="establishment" control={<Radio />} label="Establishment" />
             <FormControlLabel value="address" control={<Radio />} label="Address" />
             <FormControlLabel value="geocode" control={<Radio />} label="Geocode" />
-            <FormControlLabel value="cities" control={<Radio />} label="Cities" />
-            <FormControlLabel value="regions" control={<Radio />} label="Regions" />
+            <FormControlLabel value="(cities)" control={<Radio />} label="Cities" />
+            <FormControlLabel value="(regions)" control={<Radio />} label="Regions" />
           </RadioGroup>
         </FormControl>
 
@@ -48,7 +53,13 @@ const AutoselectForm = ({ textboxRef, selectOptions }) => {
         </Box>
 
         {/* autocomplete searchbar section */}
-        <TextField placeholder="Enter a location" size="small" inputRef={textboxRef} />
+        <TextField
+          placeholder="Enter a location"
+          size="small"
+          value={keyword}
+          inputRef={textboxRef}
+          onChange={handleKeywordInput}
+        />
       </FormGroup>
     </Box>
   );

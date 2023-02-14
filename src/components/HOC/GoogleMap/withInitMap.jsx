@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import useShallowEqualSelector from 'helpers/useShallowEqualSelector';
 import { useDispatch } from 'react-redux';
 import validateLoadedScript from 'helpers/validateLoadedScript';
-import { setMapProperties } from 'store/actions/googleMapAction';
+import { storeMapProperties } from 'store/actions/googleMapAction';
 
 const withInitMap = Component => () => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const withInitMap = Component => () => {
       map: mapInstance
     });
 
-    dispatch(setMapProperties({ map: mapInstance, marker: mapMarker }));
+    dispatch(storeMapProperties({ map: mapInstance, marker: mapMarker }));
   };
 
   const loadMapScript = () => {

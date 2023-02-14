@@ -1,19 +1,15 @@
 /* eslint-disable no-undef */
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import useShallowEqualSelector from 'helpers/useShallowEqualSelector';
-import { selectMapPlace, setMapOption } from 'store/actions/formAction';
-import { useEffect, useRef } from 'react';
+import { selectMapPlace } from 'store/actions/formAction';
+import { storeAutocompleteInstance } from 'store/actions/googleMapAction';
 
 const withAutocomplete = Component => () => {
   const dispatch = useDispatch();
   const textboxRef = useRef();
   const { mapProps } = useShallowEqualSelector(state => state.googleMap);
   const formState = useShallowEqualSelector(state => state.form);
-
-  const selectOptions = e => {
-    dispatch(setMapOption(e.target.value));
-  };
 
   // initiate map autocomplete instance
   const initAutocompletePlace = () => {
@@ -24,9 +20,10 @@ const withAutocomplete = Component => () => {
 
     autocomplete.addListener('place_changed', () => {
       const place = autocomplete.getPlace();
-      // dispatch to observable epic
       dispatch(selectMapPlace(place));
     });
+
+    dispatch(storeAutocompleteInstance(autocomplete));
   };
 
   useEffect(() => {
@@ -36,7 +33,7 @@ const withAutocomplete = Component => () => {
     }
   }, [window.google?.maps]);
 
-  return <Component textboxRef={textboxRef} selectOptions={selectOptions} />;
+  return <Component textboxRef={textboxRef} />;
 };
 
 export default withAutocomplete;

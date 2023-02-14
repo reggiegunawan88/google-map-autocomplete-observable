@@ -1,4 +1,5 @@
 const initialState = {
+  keyword: '',
   place: {
     name: '',
     address: ''
@@ -12,6 +13,12 @@ const initialState = {
 
 const formReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'SET_INPUT_KEYWORD': {
+      return {
+        ...state,
+        keyword: action.payload
+      };
+    }
     case 'SET_MAP_TYPE': {
       return {
         ...state,

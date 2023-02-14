@@ -7,9 +7,16 @@ export const selectMapPlace = value => {
   };
 };
 
-export const setMapOption = value => {
+export const setAutocompleteOption = value => {
   return {
-    type: 'SET_OPTION',
+    type: 'SET_AUTOCOMPLETE_OPTION',
+    payload: value
+  };
+};
+
+export const setInputKeyword = value => {
+  return {
+    type: 'SET_INPUT_KEYWORD',
     payload: value
   };
 };

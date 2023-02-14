@@ -1,6 +1,6 @@
 import { combineEpics } from 'redux-observable';
 import { ofType } from 'redux-observable';
-import { mergeMap } from 'rxjs/operators';
+import { mergeMap, mapTo } from 'rxjs/operators';
 
 // get and set map location based on selected place
 const getMapLocation = async ({ place, store }) => {
@@ -25,6 +25,13 @@ const getMapLocation = async ({ place, store }) => {
   return place;
 };
 
+const assignAutocompleteOption = ({ type, store }) => {
+  const { autocomplete } = store.value.googleMap;
+  // set type to autocomplete instance
+  autocomplete.setTypes(type);
+  return type;
+};
+
 // epic listener for selecting autocomplete place
 const selectAutoCompletePlace = (action$, store) =>
   action$.pipe(
@@ -32,4 +39,13 @@ const selectAutoCompletePlace = (action$, store) =>
     mergeMap(action => getMapLocation({ place: action.payload, store }))
   );
 
-export default combineEpics(selectAutoCompletePlace);
+// epic listener for selecting autocomplete radio button options
+const selectAutocompleteOption = (action$, store) => {
+  return action$.pipe(
+    ofType('SET_AUTOCOMPLETE_OPTION'),
+    mergeMap(action => assignAutocompleteOption({ type: action.payload, store })),
+    mapTo({ type: 'SET_INPUT_KEYWORD', payload: '' })
+  );
+};
+
+export default combineEpics(selectAutoCompletePlace, selectAutocompleteOption);
