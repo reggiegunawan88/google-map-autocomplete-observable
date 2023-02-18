@@ -7,6 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Google Map with autocomplete searchbox and custom form options.
 
 ## Tech Stacks
+- Google Map API Vanilla Javascript
 - ReactJS v.18.2.0
 - Material UI v5.11.8
 - Redux v4.2.1
